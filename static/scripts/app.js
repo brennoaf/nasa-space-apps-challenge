@@ -6,7 +6,15 @@ const page = {
         content: document.querySelector('main'),
         sendDataButton: document.querySelectorAll('.send-button'),
 
-        totalGraphsContainer: document.querySelectorAll('.plot')
+        totalGraphsContainer: document.querySelectorAll('.plot'),
+
+    },
+
+    popup: {
+        openPopup: document.querySelector('.button-popup'),
+        closePopup: document.querySelector('.close-popup'),
+        content: document.querySelector('.popup-content')
+
     },
 
     moon: {
@@ -44,10 +52,19 @@ const page = {
     }
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', () => {
     page.main.totalGraphsContainer.forEach(graphContainer =>{
         Plotly.Plots.resize(graphContainer);
-    })
+    });
+
+    page.popup.closePopup.addEventListener('click', () => {
+        page.popup.content.classList.toggle('hidden');
+    });
+
+    page.popup.openPopup.addEventListener('click', () => {
+        console.log('oi')
+        page.popup.content.classList.toggle('hidden');
+    });
 });
 
 const moonpopup = new MoonPopup(page);

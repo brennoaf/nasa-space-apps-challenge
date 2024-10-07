@@ -27,8 +27,6 @@ export class MarsPopup{
         }
         
 
-        console.log(mars.self)
-
         mars.startButton.addEventListener('click', () =>{
             mars.self.style.transform = 'scale(2)';
             mars.infoText.style.opacity = '0';

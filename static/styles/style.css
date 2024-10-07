@@ -29,8 +29,83 @@ main {
   display: flex;
   width: 100%;
   height: 100vh;
-  max-width: 900px;
   overflow: hidden;
+}
+main .button-popup-content {
+  z-index: 99;
+  position: absolute;
+  right: 0.5em;
+  top: 0.5em;
+}
+main .button-popup-content .button-popup {
+  width: 4em;
+  aspect-ratio: 1;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+main .button-popup-content .button-popup svg {
+  width: 100%;
+  aspect-ratio: 1;
+}
+main .button-popup-content .button-popup svg path {
+  fill: #ffffff;
+}
+main .popup-content {
+  z-index: 99;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+main .popup-content .background-blur {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(15px);
+}
+main .popup-content .popup-page {
+  z-index: 2;
+  width: 80%;
+  height: 90%;
+  padding: 1em;
+  background: #232323;
+  overflow-y: auto;
+}
+main .popup-content .popup-page .close-popup {
+  position: fixed;
+  padding: 0.5em;
+  right: 10vw;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+main .popup-content .popup-page .text-content {
+  line-height: 1.6;
+}
+main .popup-content .popup-page .text-content h1, main .popup-content .popup-page .text-content h2, main .popup-content .popup-page .text-content h3 {
+  color: #6555ee;
+}
+main .popup-content .popup-page .text-content p {
+  margin-bottom: 20px;
+}
+main .popup-content .popup-page .text-content ul {
+  margin-left: 20px;
+}
+main .popup-content .popup-page .text-content li {
+  margin-bottom: 10px;
+}
+main .popup-content.hidden {
+  display: none;
 }
 main .seismic-corpus-content {
   display: flex;
@@ -65,7 +140,7 @@ main .seismic-corpus-content .seismic-corpus-container .corpus-container .text-c
   font-weight: 500;
 }
 main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button {
-  z-index: 99;
+  z-index: 88;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -164,6 +239,7 @@ main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-co
   border: none;
   border-radius: 10px;
   background: #5d50a1;
+  cursor: pointer;
 }
 main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-content.hidden {
   display: none;
@@ -180,7 +256,20 @@ main .seismic-corpus-content .info-bar-content .analysis-content .graphs-contain
   justify-content: space-around;
   width: 100%;
   margin-bottom: 2em;
+  font-weight: 600;
   font-size: 20px;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graphs-title {
+  margin-bottom: 1.5em;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graphs-title .text-info {
+  margin-bottom: 0.5em;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graphs-title .text-info p {
+  color: rgb(0, 179, 0);
 }
 main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .collected-data-text {
   display: flex;
@@ -203,8 +292,11 @@ main .seismic-corpus-content .info-bar-content .analysis-content .graphs-contain
   width: 93%;
   height: fit-content;
 }
-main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-content.spectogram-graph-content {
-  margin: 2em 0 3em 0;
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-content.sta-graph-content {
+  margin: 2em 0 2em 0;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-content.spectrogram-graph-content {
+  margin-bottom: 3em;
 }
 main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .sta-info-content {
   margin-bottom: 2em;

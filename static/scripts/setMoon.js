@@ -1,6 +1,6 @@
 const sceneMars = new THREE.Scene();
 const cameraMars = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-const rendererMars = new THREE.WebGLRenderer({ alpha: true }); // Canvas transparente
+const rendererMars = new THREE.WebGLRenderer({ alpha: true });
 rendererMars.setSize(350, 350);
 document.querySelector('.mars-representation').appendChild(rendererMars.domElement);
 
@@ -13,23 +13,21 @@ sceneMars.add(mars);
 
 cameraMars.position.z = 2;
 
-// Configuração da cena para a Lua
 const sceneMoon = new THREE.Scene();
 const cameraMoon = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
-const rendererMoon = new THREE.WebGLRenderer({ alpha: true }); // Canvas transparente
+const rendererMoon = new THREE.WebGLRenderer({ alpha: true });
 rendererMoon.setSize(350, 350);
 document.querySelector('.corpus-representation').appendChild(rendererMoon.domElement);
 
 const geometryMoon = new THREE.SphereGeometry(1, 32, 32);
 const moonTextureLoader = new THREE.TextureLoader();
-const moonTexture = moonTextureLoader.load('https://mattloftus.github.io/images/moon_texture.jpg'); // URL da textura da Lua
+const moonTexture = moonTextureLoader.load('https://mattloftus.github.io/images/moon_texture.jpg');
 const moonMaterial = new THREE.MeshBasicMaterial({ map: moonTexture });
 const moon = new THREE.Mesh(geometryMoon, moonMaterial);
 sceneMoon.add(moon);
 
 cameraMoon.position.z = 2;
 
-// Variáveis para controle de arraste
 let isDraggingMars = false;
 let previousMouseXMars = 0;
 let previousMouseYMars = 0;
@@ -38,55 +36,70 @@ let isDraggingMoon = false;
 let previousMouseXMoon = 0;
 let previousMouseYMoon = 0;
 
-// Eventos para Marte
-document.addEventListener('mousedown', (event) => {
-    isDraggingMars = true;
-    previousMouseXMars = event.clientX;
-    previousMouseYMars = event.clientY;
-});
 
-document.addEventListener('mouseup', () => {
-    isDraggingMars = false;
-});
+function startDrag(event, isMoon) {
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY;
 
-document.addEventListener('mousemove', (event) => {
-    if (isDraggingMars) {
-        const deltaX = event.clientX - previousMouseXMars;
-        const deltaY = event.clientY - previousMouseYMars;
-
-        mars.rotation.y += deltaX * 0.01;
-        mars.rotation.x += deltaY * 0.01;
-
-        previousMouseXMars = event.clientX;
-        previousMouseYMars = event.clientY;
+    if (isMoon) {
+        isDraggingMoon = true;
+        previousMouseXMoon = clientX;
+        previousMouseYMoon = clientY;
+    } else {
+        isDraggingMars = true;
+        previousMouseXMars = clientX;
+        previousMouseYMars = clientY;
     }
-});
+}
 
-// Eventos para a Lua
-document.addEventListener('mousedown', (event) => {
-    isDraggingMoon = true;
-    previousMouseXMoon = event.clientX;
-    previousMouseYMoon = event.clientY;
-});
+function endDrag(isMoon) {
+    if (isMoon) {
+        isDraggingMoon = false;
+    } else {
+        isDraggingMars = false;
+    }
+}
 
-document.addEventListener('mouseup', () => {
-    isDraggingMoon = false;
-});
+function moveObject(event, isMoon) {
+    const clientX = event.touches ? event.touches[0].clientX : event.clientX;
+    const clientY = event.touches ? event.touches[0].clientY : event.clientY;
 
-document.addEventListener('mousemove', (event) => {
-    if (isDraggingMoon) {
-        const deltaX = event.clientX - previousMouseXMoon;
-        const deltaY = event.clientY - previousMouseYMoon;
+    if (isMoon && isDraggingMoon) {
+        const deltaX = clientX - previousMouseXMoon;
+        const deltaY = clientY - previousMouseYMoon;
 
         moon.rotation.y += deltaX * 0.01;
         moon.rotation.x += deltaY * 0.01;
 
-        previousMouseXMoon = event.clientX;
-        previousMouseYMoon = event.clientY;
-    }
-});
+        previousMouseXMoon = clientX;
+        previousMouseYMoon = clientY;
+    } else if (!isMoon && isDraggingMars) {
+        const deltaX = clientX - previousMouseXMars;
+        const deltaY = clientY - previousMouseYMars;
 
-// Função de animação
+        mars.rotation.y += deltaX * 0.01;
+        mars.rotation.x += deltaY * 0.01;
+
+        previousMouseXMars = clientX;
+        previousMouseYMars = clientY;
+    }
+}
+
+document.addEventListener('mousedown', (event) => startDrag(event, false));
+document.addEventListener('mouseup', () => endDrag(false));
+document.addEventListener('mousemove', (event) => moveObject(event, false));
+document.addEventListener('touchstart', (event) => startDrag(event, false));
+document.addEventListener('touchend', () => endDrag(false));
+document.addEventListener('touchmove', (event) => moveObject(event, false));
+
+document.addEventListener('mousedown', (event) => startDrag(event, true));
+document.addEventListener('mouseup', () => endDrag(true));
+document.addEventListener('mousemove', (event) => moveObject(event, true));
+document.addEventListener('touchstart', (event) => startDrag(event, true));
+document.addEventListener('touchend', () => endDrag(true));
+document.addEventListener('touchmove', (event) => moveObject(event, true));
+
+
 function animate() {
     requestAnimationFrame(animate);
     rendererMars.render(sceneMars, cameraMars);

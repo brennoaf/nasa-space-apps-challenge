@@ -26,7 +26,6 @@ export class MoonPopup{
             this.page.mars.content.remove();
         }
 
-        console.log(moon.self)
 
         moon.startButton.addEventListener('click', () =>{
             moon.self.style.transform = 'scale(2)';

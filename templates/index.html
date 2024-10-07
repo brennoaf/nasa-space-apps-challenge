@@ -9,6 +9,113 @@
 </head>
 <body>
     <main>
+        <div class="button-popup-informative-content button-popup-content">
+            <button class="button-popup-informative button-popup">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 3C7.04 3 3 7.04 3 12C3 16.96 7.04 21 12 21C16.96 21 21 16.96 21 12C21 7.04 16.96 3 12 3ZM12 19.5C7.86 19.5 4.5 16.14 4.5 12C4.5 7.86 7.86 4.5 12 4.5C16.14 4.5 19.5 7.86 19.5 12C19.5 16.14 16.14 19.5 12 19.5ZM14.3 7.7C14.91 8.31 15.25 9.13 15.25 10C15.25 10.87 14.91 11.68 14.3 12.3C13.87 12.73 13.33 13.03 12.75 13.16V13.5C12.75 13.91 12.41 14.25 12 14.25C11.59 14.25 11.25 13.91 11.25 13.5V12.5C11.25 12.09 11.59 11.75 12 11.75C12.47 11.75 12.91 11.57 13.24 11.24C13.57 10.91 13.75 10.47 13.75 10C13.75 9.53 13.57 9.09 13.24 8.76C12.58 8.1 11.43 8.1 10.77 8.76C10.44 9.09 10.26 9.53 10.26 10C10.26 10.41 9.92 10.75 9.51 10.75C9.1 10.75 8.76 10.41 8.76 10C8.76 9.13 9.1 8.32 9.71 7.7C10.94 6.47 13.08 6.47 14.31 7.7H14.3ZM13 16.25C13 16.8 12.55 17.25 12 17.25C11.45 17.25 11 16.8 11 16.25C11 15.7 11.45 15.25 12 15.25C12.55 15.25 13 15.7 13 16.25Z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="popup-content hidden">
+            <div class="background-blur"></div>
+            <div class="popup-page">
+                <button class="close-popup">X</button>
+                <div class="text-content">
+                    <h1>Introduction</h1>
+                    <p>Imagine you have a monitoring application that analyzes seismic movements on the Moon or Mars, using data files you can upload to the app. Let me show you how this application works and what you can see in it.</p>
+                
+                    <h2>How to Use the Application</h2>
+                    <ul>
+                        <li>
+                            <strong>Homepage:</strong> When you open the application, you land on the main page. Here, you can choose to load data from the Moon or Mars. These datasets come in ZIP files that contain information about the seismic events recorded in those locations.
+                        </li>
+                        <li>
+                            <strong>Uploading a File:</strong> 
+                            You can upload a ZIP file containing the data. The application will unzip and read the data, categorizing the information into two groups:
+                            <ul>
+                                <li><strong>Catalogs:</strong> Files that contain historical records of seismic events.</li>
+                                <li><strong>Data:</strong> The records of seismic movement (velocity) over time.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Selecting Data for Analysis:</strong> Once the files are uploaded, the application will select the first file and begin analyzing the data, displaying interactive graphs for you to visualize.
+                        </li>
+                    </ul>
+
+                    <h2>What Happens to the Data?</h2>
+                    <p>The application processes the loaded data in several steps to prepare them for analysis. Here's a simplified explanation of those steps:</p>
+                    <ul>
+                        <li>
+                            <strong>Data Interpolation:</strong> If there are gaps (blank values) in the data, the application fills those gaps to make the analysis more accurate. This ensures that the graphs don't have "holes."
+                        </li>
+                        <li>
+                            <strong>Data Filtering:</strong> The application uses a method called the Butterworth filter, which essentially "cleans" the data by removing noise and keeping only the most relevant information.
+                        </li>
+                    </ul>
+                
+                    <h2>What Is Displayed on the Screen?</h2>
+                    <p>Now to the visual part! The application generates three main graphs to help you understand seismic events. I'll explain each one and how to read them.</p>
+                
+                    <h3>1. Velocity Graph (Filtered Velocity Data)</h3>
+                    <p>This graph shows how the velocity of movement varies over time. Think of it as a "thermometer," but instead of measuring temperature, it shows how much the ground is moving in meters per second.</p>
+                    <ul>
+                        <li><strong>X-axis:</strong> Represents time.</li>
+                        <li><strong>Y-axis:</strong> Shows the speed at which the ground is moving.</li>
+                    </ul>
+                    <p><strong>What to Look For?</strong> You will see a line that rises and falls. When the line rises sharply, it means there was a tremor or sudden movement.</p>
+                    <ul>
+                        <li><strong>Cyan lines:</strong> Mark where the application detected a potential event (tremor).</li>
+                        <li><strong>Red lines:</strong> Indicate where "noise" or "glitches" were detected, which are movements that aren't real events and have been discarded.</li>
+                    </ul>
+                
+                    <h3>2. STA/LTA Detection Graph</h3>
+                    <p>This graph uses a special technique called STA/LTA (Short-Term Average/Long-Term Average) to automatically detect tremors. It's like a "quake hunter" that compares real-time movement with past movement.</p>
+                    <ul>
+                        <li><strong>X-axis:</strong> Represents time.</li>
+                        <li><strong>Y-axis:</strong> Shows the ratio between current movement and background (past) movement.</li>
+                    </ul>
+                    <p><strong>What to Look For?</strong> If the green line in the graph rises above the red line, it indicates the application has "detected" a potential tremor. The red line is the detection threshold – if the graph surpasses this line, an event is recorded.</p>
+                
+                    <h3>3. Spectrogram</h3>
+                    <p>This graph is more visual and colorful. It shows how the energy of the tremor spreads across different frequencies (low or high-pitched "sounds") over time.</p>
+                    <ul>
+                        <li><strong>X-axis:</strong> Represents time.</li>
+                        <li><strong>Y-axis:</strong> Represents frequencies, meaning whether the movement was more "low-pitched" or "high-pitched."</li>
+                        <li><strong>Colors:</strong> The colors indicate the intensity of the movement. The "hotter" parts (red or yellow) show higher energy.</li>
+                    </ul>
+
+                    <h2>What to Look For?</h2>
+                    <p>If you see red or yellow spots, it means there was a lot of energy at that moment and frequency – indicating a seismic event.</p>
+
+                    <h2>What Does the Application Tell You?</h2>
+                    <p>At the bottom of the page, the application displays:</p>
+                    <ul>
+                        <li>The number of events (tremors) detected.</li>
+                        <li>The number of "glitches" or noise removed.</li>
+                    </ul>
+                    <p>This helps you understand if the data contains a lot of noise or if there are many significant tremors.</p>
+
+                    <span style="margin-bottom: 2em;">
+                        <h1 style="color:white; text-decoration: underline;">For knowledge:</h1>
+
+                        <h2>What is STA/LTA?</h2>
+                        <p>STA/LTA is a widely used technique for automatically detecting seismic events in ground motion data. Let’s break it down:</p>
+                        <ul>
+                            <li><strong>STA (Short-Term Average)</strong>: This stands for "Short-Term Average." The application calculates an average of the velocity (or energy) of movements, but only over a short time interval. This is useful for spotting sudden changes, like when a tremor begins.</li>
+                            <li><strong>LTA (Long-Term Average)</strong>: This stands for "Long-Term Average." Here, the average is calculated over a longer time period to understand the "normal" behavior of the ground.</li>
+                        </ul>
+                        
+                        <h2>How does STA/LTA work?</h2>
+                        <p>The idea behind STA/LTA is to compare recent movement (STA) with background movement (LTA). When the STA value (short-term) increases significantly compared to the LTA value (long-term), it indicates that something unusual is happening — and it may be a tremor.</p>
+                        <h3>In the STA/LTA graph of the application:</h3>
+                        <ul>
+                            <li><strong>Green Line</strong>: Represents the ratio between STA and LTA over time.</li>
+                            <li><strong>Red Line</strong>: This is the threshold that the application uses to detect events.</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
         <div class="seismic-corpus-content moon">
             <div class="seismic-corpus-container">
                 <div class="moon-container corpus-container">
@@ -96,6 +203,14 @@
                             <a href="{{ url_for('previous_file') }}">Previous Graph</a>
                             <a href="{{ url_for('next_file') }}">Next Graph</a>
                         </div>
+                        <div class="graphs-title">
+                            <div class="file-info text-info">
+                                {{ file_info | safe }}
+                            </div>
+                            <div class="date-info text-info">
+                                {{ date_info | safe }}
+                            </div>
+                        </div>
                         <div class="collected-data-text">
                             <div class="sta-info-content">
                                 {{ sta_info | safe}}
@@ -107,8 +222,11 @@
                         <div class="velocity-graph-content graph-content">
                             {{ moon_time_series_plot | safe }}
                         </div>
-                        <div class="spectogram-graph-content graph-content">
+                        <div class="sta-graph-content graph-content">
                             {{ moon_sta_plot | safe }}
+                        </div>
+                        <div class="spectrogram-graph-content graph-content">
+                            {{ moon_spectrogram_plot | safe }}
                         </div>
                     </div>
                 </div>
@@ -204,19 +322,30 @@
                             <a href="{{ url_for('previous_file') }}">Previous Graph</a>
                             <a href="{{ url_for('next_file') }}">Next Graph</a>
                         </div>
+                        <div class="graphs-title">
+                            <div class="file-info text-info">
+                                {{ file_info | safe }}
+                            </div>
+                            <div class="date-info text-info">
+                                {{ date_info | safe }}
+                            </div>
+                        </div>
                         <div class="collected-data-text">
                             <div class="sta-info-content">
-                                {{ sta_info | safe}}
+                                {{ sta_info | safe }}
                             </div>
                             <div class="removed-info-content">
-                                {{ bugs_or_noises | safe}}
+                                {{ bugs_or_noises | safe }}
                             </div>
                         </div>
                         <div class="velocity-graph-content graph-content">
                             {{ mars_time_series_plot | safe }}
                         </div>
-                        <div class="spectogram-graph-content graph-content">
+                        <div class="sta-graph-content graph-content">
                             {{ mars_sta_plot | safe }}
+                        </div>
+                        <div class="spectrogram-graph-content graph-content">
+                            {{ mars_spectrogram_plot | safe }}
                         </div>
                     </div>
                 </div>
