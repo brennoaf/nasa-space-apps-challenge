@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <main>
+        <div class="seismic-corpus-content moon">
+            <div class="seismic-corpus-container">
+                <div class="moon-container corpus-container">
+                    <div class="text-content">
+                        <div class="title-content">
+                            <p>MOON</p>
+                        </div>
+                        <div class="subtitle-content">
+                            <p>THE FIRST SATELLITE</p>
+                        </div>
+                    </div>
+                    <div class="moon-representation corpus-representation"></div>
+                    <div class="go-mars-content next-button">
+                        <div class="right-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 5L14.15 10C14.4237 10.2563 14.6419 10.5659 14.791 10.9099C14.9402 11.2539 15.0171 11.625 15.0171 12C15.0171 12.375 14.9402 12.7458 14.791 13.0898C14.6419 13.4339 14.4237 13.7437 14.15 14L9 19" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="step-text-content">
+                            Go To Mars
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-bar-content moon-bar">
+                <div class="bar-header">
+                    <div class="title">
+                        <p>SEISMIC ANALYSIS</p>
+                    </div>
+                </div>
+                <div class="text-content info-bar-text-content moon-bar-text">
+                    <div class="radius-content info-content">
+                        <div class="info-title">
+                            <p>RADIUS</p>
+                        </div>
+                        <div class="info-information">
+                            <p>1.737,4 kilometres</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>DISTANCE FROM SUN</p>
+                        </div>
+                        <div class="info-information">
+                            <p>150 million kilometres</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>ORBITS</p>
+                        </div>
+                        <div class="info-information">
+                            <p>Planet Earth</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>ORBITAL PERIOD</p>
+                        </div>
+                        <div class="info-information">
+                            <p>27 days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="analysis-content moon-analysis hidden">
+                    <div class="choose-data-content choose-moon-data">
+                        <div class="zip-option-content option-content">
+                            <h2>Use your moon data</h2>
+                            <form action="/process_zip/moon" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="category" value="moon">
+                                <input class="moon-zip-file" type="file" name="zip_file" required>
+                                <input class="zipSendButton send-button disabled" type="submit" value="Process Zip">
+                            </form>
+                        </div>
+                        <div class="local-option-content option-content">
+                            <h2>Use our moon data</h2>
+                        <form action="/process_local/moon" method="post">
+                            <input type="hidden" name="category" value="moon">
+                            <button type="submit" class="button send-button">Process our data</button>
+                        </form>
+                        </div>        
+                    </div>
+                    <div class="graphs-container moon-graphs hidden">
+                        <div class="graph-handler-buttons">
+                            <a href="{{ url_for('previous_file') }}">Previous Graph</a>
+                            <a href="{{ url_for('next_file') }}">Next Graph</a>
+                        </div>
+                        <div class="collected-data-text">
+                            <div class="sta-info-content">
+                                {{ sta_info | safe}}
+                            </div>
+                            <div class="removed-info-content">
+                                {{ bugs_or_noises | safe}}
+                            </div>
+                        </div>
+                        <div class="velocity-graph-content graph-content">
+                            {{ moon_time_series_plot | safe }}
+                        </div>
+                        <div class="spectogram-graph-content graph-content">
+                            {{ moon_sta_plot | safe }}
+                        </div>
+                    </div>
+                </div>
+                <div class="start-journey-content">
+                    <button class="moon-start-button">START</button>
+                </div>
+            </div>
+        </div>
+        <div class="seismic-corpus-content mars">
+            <div class="seismic-corpus-container">
+                <div class="mars-container corpus-container">
+                    <div class="text-content">
+                        <div class="title-content">
+                            <p>MARS</p>
+                        </div>
+                        <div class="subtitle-content">
+                            <p>THE RED PLANET</p>
+                        </div>
+                    </div>
+                    <div class="mars-representation corpus-representation"></div>
+                    <div class="go-moon-content next-button">
+                        <div class="right-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.9991 19L9.83911 14C9.56672 13.7429 9.34974 13.433 9.20142 13.0891C9.0531 12.7452 8.97656 12.3745 8.97656 12C8.97656 11.6255 9.0531 11.2548 9.20142 10.9109C9.34974 10.567 9.56672 10.2571 9.83911 10L14.9991 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="step-text-content">
+                            Go To Moon
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="info-bar-content mars-bar">
+                <div class="bar-header">
+                    <div class="title">
+                        <p>SEISMIC ANALYSIS</p>
+                    </div>
+                </div>
+                <div class="text-content info-bar-text-content mars-bar-text">
+                    <div class="radius-content info-content">
+                        <div class="info-title">
+                            <p>RADIUS</p>
+                        </div>
+                        <div class="info-information">
+                            <p>3.389,5 kilometres</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>DISTANCE FROM SUN</p>
+                        </div>
+                        <div class="info-information">
+                            <p>206 million kilometres</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>MOONS</p>
+                        </div>
+                        <div class="info-information">
+                            <p>Phobos, Demos</p>
+                        </div>
+                    </div>
+                    <div class="distance-from-sun-content info-content">
+                        <div class="info-title">
+                            <p>ORBITAL PERIOD</p>
+                        </div>
+                        <div class="info-information">
+                            <p>687 days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="analysis-content mars-analysis hidden">
+                    <div class="choose-data-content choose-mars-data">
+                        <div class="zip-option-content option-content">
+                            <h2>Use your mars data</h2>
+                            <form action="/process_zip/mars" method="post" enctype="multipart/form-data">
+                                <input class="mars-zip-file"  type="file" name="zip_file" required>
+                                <input type="hidden" name="category" value="mars">
+                                <input class="zipSendButton send-button" type="submit" value="Process Zip">
+                            </form>
+                        </div>
+                        <div class="local-option-content option-content">
+                            <h2>Use our mars data</h2>
+                        <form action="/process_local/mars" method="post">
+                            <input type="hidden" name="category" value="mars">
+                            <button type="submit" class="button send-button">Process our data</button>
+                        </form>
+                        </div>        
+                    </div>
+                    <div class="graphs-container mars-graphs hidden">
+                        <div class="graph-handler-buttons">
+                            <a href="{{ url_for('previous_file') }}">Previous Graph</a>
+                            <a href="{{ url_for('next_file') }}">Next Graph</a>
+                        </div>
+                        <div class="collected-data-text">
+                            <div class="sta-info-content">
+                                {{ sta_info | safe}}
+                            </div>
+                            <div class="removed-info-content">
+                                {{ bugs_or_noises | safe}}
+                            </div>
+                        </div>
+                        <div class="velocity-graph-content graph-content">
+                            {{ mars_time_series_plot | safe }}
+                        </div>
+                        <div class="spectogram-graph-content graph-content">
+                            {{ mars_sta_plot | safe }}
+                        </div>
+                    </div>
+                </div>
+                <div class="start-journey-content">
+                    <button class="mars-start-button">START</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/app.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='scripts/setMoon.js') }}"></script>
+</body>
+</html>

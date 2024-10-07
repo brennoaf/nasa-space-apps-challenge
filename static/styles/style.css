@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #232323;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: linear-gradient(rgba(10, 10, 10, 0.788), rgba(19, 19, 19, 0.74)), url(https://images.unsplash.com/photo-1642436273791-296f1ab9ef5e?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dW5pdmVyc2UlMjB0ZXh0dXJlfGVufDB8fDB8fHww);
+}
+
+canvas {
+  display: block;
+  transition: 1s;
+}
+
+main {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  max-width: 900px;
+  overflow: hidden;
+}
+main .seismic-corpus-content {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  transition: 1s;
+}
+main .seismic-corpus-content .seismic-corpus-container {
+  width: 100%;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .corpus-representation {
+  z-index: 1;
+  transition: 1s;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .text-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em 0 2em 0;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .text-content .title-content {
+  font-size: 72px;
+  font-weight: 500;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button {
+  z-index: 99;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 20vh;
+  user-select: none;
+  cursor: pointer;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button .right-arrow {
+  width: 5em;
+  aspect-ratio: 1;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button .right-arrow svg {
+  stroke: white;
+  width: 100%;
+  height: 100%;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button.go-mars-content {
+  right: 5vw;
+}
+main .seismic-corpus-content .seismic-corpus-container .corpus-container .next-button.go-moon-content {
+  left: 5vw;
+}
+main .seismic-corpus-content .info-bar-content {
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5em;
+  bottom: -2em;
+  width: 90%;
+  height: 19em;
+  transition: 0.7s;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: linear-gradient(to bottom, #262a56, black);
+}
+main .seismic-corpus-content .info-bar-content .bar-header .title {
+  margin-bottom: 1em;
+  font-weight: 500;
+  font-size: 24px;
+}
+main .seismic-corpus-content .info-bar-content .text-content {
+  display: grid;
+  margin-bottom: 1em;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 3em;
+  column-gap: 10em;
+  transition: 0.5s;
+  font-size: 14px;
+}
+main .seismic-corpus-content .info-bar-content .text-content .info-title {
+  margin-bottom: 1em;
+}
+main .seismic-corpus-content .info-bar-content .text-content .info-title p {
+  color: rgb(0, 255, 179);
+  font-weight: 500;
+  font-size: 16px;
+}
+main .seismic-corpus-content .info-bar-content .text-content .info-content {
+  width: fit-content;
+}
+main .seismic-corpus-content .info-bar-content .text-content.hidden {
+  display: none;
+}
+main .seismic-corpus-content .info-bar-content .start-journey-content button {
+  padding: 0.5em 1em 0.5em 1em;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.7s;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-content .option-content form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-content .option-content form .send-button {
+  margin-top: 1em;
+  padding: 1em;
+  border: none;
+  border-radius: 10px;
+  background: #5d50a1;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .choose-data-content.hidden {
+  display: none;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-y: auto;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-handler-buttons {
+  display: inline-flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 2em;
+  font-size: 20px;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .collected-data-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2em;
+  text-align: center;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .collected-data-text p {
+  font-weight: 500;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .collected-data-text p.sta-data-values {
+  color: rgb(0, 136, 255);
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .collected-data-text p.removed-data-values {
+  color: red;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-content {
+  width: 93%;
+  height: fit-content;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .graph-content.spectogram-graph-content {
+  margin: 2em 0 3em 0;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container .sta-info-content {
+  margin-bottom: 2em;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content .graphs-container.hidden {
+  display: none;
+}
+main .seismic-corpus-content .info-bar-content .analysis-content.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  body .choose-data-content {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
